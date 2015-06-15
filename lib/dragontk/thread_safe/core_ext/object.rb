@@ -1,7 +1,12 @@
-require 'dragontk/thread_safe/wrapper'
+require 'dragontk/thread_safe/generic'
 
 class Object
+  def thread_safe
+    ThreadSafe::GenericWrapper.new(self)
+  end
+
   def safe_wrap
-    ThreadSafe::Wrapper.new(self)
+    warn '#safe_wrap is deprecated, use #thread_safe instead'
+    thread_safe
   end
 end

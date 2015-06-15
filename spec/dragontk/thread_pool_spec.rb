@@ -1,7 +1,8 @@
-require_relative '../../spec_helper'
+require 'spec_helper'
+require 'dragontk/thread_pool'
 
-describe ThreadManager do
-  context ".spawn" do
+describe ThreadPool do
+  context "#spawn" do
     it "should spawn a new sub thread" do
       subject.spawn do
         5.times do
@@ -9,12 +10,14 @@ describe ThreadManager do
           sleep 0.01
         end
       end
+
       subject.spawn do
         5.times do
           puts "On other news"
           sleep 0.01
         end
       end
+
       subject.spawn do
         5.times do
           puts "if anything, I'd say he's crazy"

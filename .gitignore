@@ -1,2 +1,5 @@
-Gemfile.lock
 *.gem
+/coverage
+/doc
+Gemfile.lock
+__gemmy__

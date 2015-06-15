@@ -14,19 +14,5 @@ module ThreadSafe
         @value.send(method_name, *args, &block)
       end)
     end
-
-    def safe_wrap
-      self
-    end
-
-    def method_missing(sym, *args, &block)
-      if @value.respond_to?(sym)
-        __in_safe__ do
-          @value.send(sym, *args, &block)
-        end
-      else
-        super
-      end
-    end
   end
 end

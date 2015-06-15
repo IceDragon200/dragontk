@@ -1,9 +1,13 @@
-require "thread"
+require 'thread'
 
 module ThreadSafe
   class Base
     def initialize
       @mutex = Mutex.new
+    end
+
+    def thread_safe
+      self
     end
 
     def __in_safe__
