@@ -1,6 +1,3 @@
-#
-# dragontk/dragontk.gemspec
-#
 lib = File.join(File.dirname(__FILE__), 'lib')
 $:.unshift lib unless $:.include?(lib)
 
@@ -22,8 +19,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop',      '~> 0.27'
   s.add_development_dependency 'yard',         '~> 0.8'
   s.add_development_dependency 'rspec',        '~> 3.2'
-  s.add_development_dependency 'codeclimate-test-reporter'
-  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'codeclimate-test-reporter',    '>= 0'
+  s.add_development_dependency 'simplecov',    '>= 0'
 
   s.require_path = 'lib'
   s.executables = Dir.glob('bin/*').map { |s| File.basename(s) }
