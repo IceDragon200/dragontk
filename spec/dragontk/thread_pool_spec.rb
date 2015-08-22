@@ -24,6 +24,8 @@ describe ThreadPool do
           sleep 0.01
         end
       end
+
+      subject.await
     end
   end
 end
