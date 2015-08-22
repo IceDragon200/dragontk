@@ -13,9 +13,6 @@ class ThreadPool
     @threads = []
     @log = options.fetch(:log, nil)
     @abort_on_exception = true
-
-    yield self if block_given?
-
     rebuild_available
     debug_log { |io| io.puts "NEW #{self.class}.#{__id__}" }
   end
