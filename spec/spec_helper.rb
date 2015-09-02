@@ -5,3 +5,5 @@ require 'simplecov'
 
 CodeClimate::TestReporter.start
 SimpleCov.start
+
+require 'dragontk'
