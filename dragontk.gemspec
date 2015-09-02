@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec',        '~> 3.2'
   s.add_development_dependency 'codeclimate-test-reporter',    '>= 0'
   s.add_development_dependency 'simplecov',    '>= 0'
+  s.add_development_dependency 'moon-logfmt',  '~> 1.0'
 
   s.require_path = 'lib'
   s.executables = Dir.glob('bin/*').map { |s| File.basename(s) }
