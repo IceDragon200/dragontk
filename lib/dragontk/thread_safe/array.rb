@@ -10,6 +10,7 @@ module ThreadSafe
     wrap :delete
     wrap :each
     wrap :empty?
+    wrap :include?
     wrap :map
     wrap :push
     wrap :size
