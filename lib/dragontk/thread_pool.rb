@@ -65,7 +65,7 @@ class ThreadPool
 
         debug_log { |io| io.puts "[job.#{id}] SPAWN (#{time.strftime("%D %T")})" }
 
-        block.call
+        block.call index: index, job_id: @job_id
         # give back this index
         @threads[index] = nil
         @available.push(index)
