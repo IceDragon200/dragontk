@@ -44,10 +44,11 @@ module DragonTK
           dirname = File.dirname(dest)
           FileUtils.mkdir_p dirname
           ll.write msg: 'Spawning download worker', at: 'downloading'
-          subwork do
-            ll.write msg: 'Starting Download', at: 'starting'
+          subwork do |wdata|
+            subworker_logger = ll.new subworker_id: wdata[:index]
+            subworker_logger.write msg: 'Starting Download', at: 'starting'
             dlr = @inst.dlr_download_link src, dest, noop: @settings.noop
-            ll.write msg: 'Download Complete', at: 'complete', result: dlr.state
+            subworker_logger.write msg: 'Download Complete', at: 'complete', result: dlr.state
             write output_data.merge(dlr: dlr, cause: 'downloaded')
           end
         else
