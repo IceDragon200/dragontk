@@ -21,7 +21,10 @@ module DragonTK
       def main
         loop do
           data = read
-          break if data == Stop
+          if data == Stop
+            @logger.write msg: 'Received stop order'
+            break
+          end
           process data
         end
       end
