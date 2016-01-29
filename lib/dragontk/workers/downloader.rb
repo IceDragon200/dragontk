@@ -33,26 +33,26 @@ module DragonTK
 
       def process(options)
         data = options[:data] # pass along data
-        l = @logger.new fn: 'download'
-        l.write options
+        process_logger = @logger.new fn: 'download'
+        process_logger.write options
         src, dest = *path_from_options(options)
 
         job_id = SecureRandom.hex(16)
         output_data = { job_id: job_id, src: src, dest: dest, data: data }
-        ll = l.new src: src, dest: dest, job_id: job_id
+        job_logger = process_logger.new src: src, dest: dest, job_id: job_id
         if @allow_download.call(src: src, dest: dest, data: data)
           dirname = File.dirname(dest)
           FileUtils.mkdir_p dirname
-          ll.write msg: 'Spawning download worker', at: 'downloading'
+          job_logger.write msg: 'Spawning download worker', at: 'downloading'
           subwork do |wdata|
-            subworker_logger = ll.new subworker_id: wdata[:index]
+            subworker_logger = job_logger.new subworker_id: wdata[:index]
             subworker_logger.write msg: 'Starting Download', at: 'starting'
             dlr = @inst.dlr_download_link src, dest, noop: @settings.noop
             subworker_logger.write msg: 'Download Complete', at: 'complete', result: dlr.state
             write output_data.merge(dlr: dlr, cause: 'downloaded')
           end
         else
-          ll.write msg: 'Download has been skipped', at: 'skipping'
+          job_logger.write msg: 'Download has been skipped', at: 'skipping'
           write output_data.merge(dlr: Kona::DownloadResult.new(:skipped, src, dest), cause: 'skipped')
         end
       end
