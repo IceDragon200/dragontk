@@ -21,13 +21,9 @@ module DragonTK
         run if options[:run]
       end
 
-      def initialize_members(options)
+      protected def initialize_members(options)
         @id = SecureRandom.hex(16)
-        @logger = options.fetch(:logger) do
-          l = Moon::Logfmt::Logger.new
-          l.io = NullIO::OUT
-          l
-        end
+        @logger = options.fetch(:logger, Kona::Logfmt::NULL)
         @run_mutex = Mutex.new
       end
 
