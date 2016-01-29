@@ -2,6 +2,14 @@ require 'dragontk/workers/base'
 
 module DragonTK
   module Workers
+    # Expected input paramters
+    #   .param [String] src
+    #      .required
+    #   .param [String] dest
+    #       .optional
+    #   .param [String] dirname
+    #       .optional
+    # When giving the parameters, a :src is required, AND a :dest OR :dirname
     class Downloader < Base
       include Async::SubWorkers
 
