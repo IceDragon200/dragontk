@@ -1,16 +1,59 @@
+require 'json'
+require 'yajl'
+require 'yaml'
 require 'dragontk/core/atomic/atomic'
 require 'dragontk/core/atomic/atom'
 
 module DragonTK
+  class JsonSerializer
+    def decode(contents)
+      Yajl::Parser.parse(contents)
+    end
+
+    def encode(data)
+      Yajl::Encoder.encode(data)
+    end
+
+    def load_file(filename)
+      decode File.read(filename)
+    end
+
+    def self.instance
+      @instance ||= new
+    end
+  end
+
+  class YamlSerializer
+    def encode(contents)
+      contents.to_yaml
+    end
+
+    def decode(contents)
+      YAML.parse(contents)
+    end
+
+    def load_file(filename)
+      YAML.load_file(filename)
+    end
+
+    def self.instance
+      @instance ||= new
+    end
+  end
+
   class AtomicFileCache
     include Atomic
 
     attr_accessor :filename
     atomic :filename=
 
+    attr_accessor :serializer
+    atomic :serializer=
+
     def initialize(filename, initial = {})
       @filename = filename
       @atom = Atom.new(initial)
+      @serializer = YamlSerializer.instance
     end
 
     def preload
@@ -21,12 +64,12 @@ module DragonTK
       end
     end
 
-    private def load_data_unsafe(filename)
-      YAML.load_file(@filename)
+    protected def load_data_unsafe(filename)
+      @serializer.load_file(filename)
     end
 
-    private def dump_data_unsafe(data)
-      data.to_yaml
+    protected def dump_data_unsafe(data)
+      @serializer.encode(data)
     end
 
     private def save!

@@ -16,12 +16,15 @@ Gem::Specification.new do |s|
   s.authors = ['Corey Powell']
   s.email  = 'mistdragon100@gmail.com'
 
-  s.add_development_dependency 'rubocop',      '~> 0.27'
-  s.add_development_dependency 'yard',         '~> 0.8'
-  s.add_development_dependency 'rspec',        '~> 3.2'
-  s.add_development_dependency 'codeclimate-test-reporter',    '>= 0'
-  s.add_development_dependency 'simplecov',    '>= 0'
-  s.add_development_dependency 'moon-logfmt',  '~> 1.0'
+  s.add_dependency 'moon-logfmt',  '~> 1.0'
+
+  s.add_dependency 'rubocop',      '~> 0.27'
+  s.add_dependency 'rspec',        '~> 3.2'
+  s.add_dependency 'simplecov',    '>= 0'
+  s.add_dependency 'yajl-ruby',       '~> 1.2'
+  s.add_dependency 'codeclimate-test-reporter',    '>= 0'
+
+  s.add_dependency 'yard',         '~> 0.8'
 
   s.require_path = 'lib'
   s.executables = Dir.glob('bin/*').map { |s| File.basename(s) }
