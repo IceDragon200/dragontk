@@ -14,10 +14,11 @@ module DragonTK
       include Async::SubWorkers
 
       attr_accessor :allow_download
+      attr_accessor :kona_instance
 
       private def prepare
         super
-        @inst = Kona::Instance.new
+        @kona_instance = Kona::Instance.new
         @allow_download ||= -> (data) { true }
       end
 
@@ -55,7 +56,7 @@ module DragonTK
           subwork do |wdata|
             subworker_logger = job_logger.new subworker_id: wdata[:index]
             subworker_logger.write msg: 'Starting Download', at: 'starting'
-            dlr = @inst.dlr_download_link src, dest, noop: @settings.noop, data: data do |output|
+            dlr = @kona_instance.dlr_download_link src, dest, noop: @settings.noop, data: data do |output|
               output.each_line do |line|
                 subworker_logger.write dl_output: line
               end
