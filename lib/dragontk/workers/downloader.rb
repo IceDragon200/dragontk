@@ -55,7 +55,11 @@ module DragonTK
           subwork do |wdata|
             subworker_logger = job_logger.new subworker_id: wdata[:index]
             subworker_logger.write msg: 'Starting Download', at: 'starting'
-            dlr = @inst.dlr_download_link src, dest, noop: @settings.noop, data: data
+            dlr = @inst.dlr_download_link src, dest, noop: @settings.noop, data: data do |output|
+              output.each_line do |line|
+                subworker_logger.write dl_output: line
+              end
+            end
             subworker_logger.write msg: 'Download Complete', at: 'complete', result: dlr.state
             write output_data.merge(dlr: dlr, cause: 'downloaded')
           end
