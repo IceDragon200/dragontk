@@ -42,6 +42,7 @@ module DragonTK
 
       def process(options)
         data = options[:data] # pass along data
+        noop = @settings.noop || options.fetch(:noop, false)
         process_logger = @logger.new fn: 'download'
         process_logger.write options
         src, dest = *path_from_options(options)
@@ -56,7 +57,7 @@ module DragonTK
           subwork do |wdata|
             subworker_logger = job_logger.new subworker_id: wdata[:index]
             subworker_logger.write msg: 'Starting Download', at: 'starting'
-            dlr = @kona_instance.dlr_download_link src, dest, noop: @settings.noop, data: data do |output|
+            dlr = @kona_instance.dlr_download_link src, dest, noop: noop, data: data do |output|
               output.each_line do |line|
                 subworker_logger.write dl_output: line
               end
