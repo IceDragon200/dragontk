@@ -1,3 +1,6 @@
+require 'dragontk/workers/base'
+require 'dragontk/workers/stop'
 require 'dragontk/workers/interface'
+require 'dragontk/workers/channel'
 require 'dragontk/workers/buffer'
 require 'dragontk/workers/downloader'

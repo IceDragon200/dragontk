@@ -4,7 +4,7 @@ module DragonTK
       module Writer
         attr_accessor :out
 
-        private def write(data)
+        def write(data)
           @out << data if @out
         end
       end
@@ -12,7 +12,7 @@ module DragonTK
       module Reader
         attr_accessor :in
 
-        private def read
+        def read
           return nil unless @in
           @in.pop
         end
