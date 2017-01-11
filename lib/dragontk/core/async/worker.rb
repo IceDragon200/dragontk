@@ -74,6 +74,11 @@ module DragonTK
           @thread = nil
         end
       end
+
+      def kill
+        @thread.kill
+        @thread = nil
+      end
     end
   end
 end
