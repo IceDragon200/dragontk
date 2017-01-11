@@ -16,13 +16,12 @@ Gem::Specification.new do |s|
   s.authors = ['Corey Powell']
   s.email  = 'mistdragon100@gmail.com'
 
-  s.add_dependency 'moon-logfmt',  '~> 1.0'
+  s.add_dependency 'moon-logfmt',  '>= 1.1'
 
   s.add_dependency 'rubocop',      '~> 0.27'
   s.add_dependency 'rspec',        '~> 3.2'
   s.add_dependency 'simplecov',    '>= 0'
   s.add_dependency 'yajl-ruby',       '~> 1.2'
-  s.add_dependency 'codeclimate-test-reporter',    '>= 0'
 
   s.add_dependency 'yard',         '~> 0.8'
 
