@@ -69,14 +69,12 @@ module DragonTK
 
       def await
         @logger.write fn: 'await'
-        if @thread
-          @thread.join
-          @thread = nil
-        end
+        @thread&.join
+        @thread = nil
       end
 
       def kill
-        @thread.kill
+        @thread&.kill
         @thread = nil
       end
     end
