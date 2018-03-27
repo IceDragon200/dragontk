@@ -14,7 +14,11 @@ module DragonTK
 
     def get
       synchronize do |val|
-        yield val if val
+        if block_given?
+          yield val if val
+        else
+          val
+        end
       end
     end
 
