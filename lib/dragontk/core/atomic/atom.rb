@@ -12,10 +12,16 @@ module DragonTK
       yield @value
     end
 
-    def get
+    def tap
       synchronize do |val|
         yield val if block_given?
         val
+      end
+    end
+
+    def get
+      synchronize do |val|
+        yield val
       end
     end
 
