@@ -11,6 +11,7 @@ module ThreadSafe
     wrap :puts
     wrap :read
     wrap :write
+    wrap :flush
 
     def tty?
       @value.tty?

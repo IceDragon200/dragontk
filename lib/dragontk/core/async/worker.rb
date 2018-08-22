@@ -37,18 +37,25 @@ module DragonTK
         l = @logger.new fn: 'run'
         l.write state: 'starting'
         @thread = Thread.new do
+          #
           l.write state: 'preparing'
           state_channel << :prepare
           prepare
-          l.write state: 'main'
-          state_channel << :main
-          main
-          l.write state: 'terminating'
-          state_channel << :terminate
-          terminate
-          l.write state: 'discarding_thread'
-          @thread = nil
-          state_channel << :dead
+          begin
+            #
+            l.write state: 'main'
+            state_channel << :main
+            main
+          ensure
+            #
+            l.write state: 'terminating'
+            state_channel << :terminate
+            terminate
+            #
+            l.write state: 'discarding_thread'
+            @thread = nil
+            state_channel << :dead
+          end
         end
       end
 
