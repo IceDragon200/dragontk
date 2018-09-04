@@ -18,7 +18,7 @@ module DragonTK
 
       def prepare
         super
-        @q = ThreadPool.new
+        @q = DragonTK::ThreadPool.new
         @q.thread_limit = worker_limit
       end
 

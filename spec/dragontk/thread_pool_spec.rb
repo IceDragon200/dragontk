@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'dragontk/thread_pool'
 
-describe ThreadPool do
+describe DragonTK::ThreadPool do
   context "#spawn" do
     it "should spawn a new sub thread" do
       subject.spawn do
