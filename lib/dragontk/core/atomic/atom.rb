@@ -1,4 +1,4 @@
-require 'dragontk/core/atomic/atomic'
+require_relative 'atomic'
 
 module DragonTK
   class Atom

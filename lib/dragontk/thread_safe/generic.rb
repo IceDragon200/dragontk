@@ -1,4 +1,4 @@
-require 'dragontk/thread_safe/wrapper'
+require_relative 'wrapper'
 
 module ThreadSafe
   class GenericWrapper < Wrapper

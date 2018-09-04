@@ -1,4 +1,5 @@
-require 'dragontk/workers/interface'
+require 'thread'
+require_relative 'interface'
 
 module DragonTK
   module Workers

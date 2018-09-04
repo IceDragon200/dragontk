@@ -1,5 +1,5 @@
-require 'dragontk/thread_safe/core_ext/object'
-require 'dragontk/thread_safe/io'
+require_relative 'object'
+require_relative '../io'
 
 class IO
   def thread_safe

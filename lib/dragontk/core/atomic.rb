@@ -1,3 +1,3 @@
-require 'dragontk/core/atomic/atomic'
-require 'dragontk/core/atomic/atom'
-require 'dragontk/core/atomic/atomic_file_cache'
+require_relative 'atomic/atomic'
+require_relative 'atomic/atom'
+require_relative 'atomic/atomic_file_cache'

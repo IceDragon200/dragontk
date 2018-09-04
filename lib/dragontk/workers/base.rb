@@ -1,6 +1,6 @@
-require 'dragontk/core/async'
-require 'dragontk/workers/stop'
-require 'dragontk/workers/interface'
+require_relative '../core/async'
+require_relative 'stop'
+require_relative 'interface'
 require 'thread'
 require 'ostruct'
 

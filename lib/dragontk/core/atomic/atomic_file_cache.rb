@@ -1,8 +1,8 @@
 require 'json'
 require 'yajl'
 require 'yaml'
-require 'dragontk/core/atomic/atomic'
-require 'dragontk/core/atomic/atom'
+require_relative 'atomic'
+require_relative 'atom'
 
 module DragonTK
   class JsonSerializer

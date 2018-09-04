@@ -1,4 +1,4 @@
-require 'dragontk/core_ext/ostruct'
+require_relative 'core_ext/ostruct'
 require 'yaml'
 
 module DragonTK

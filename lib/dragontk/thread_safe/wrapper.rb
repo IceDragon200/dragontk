@@ -1,4 +1,4 @@
-require 'dragontk/thread_safe/base'
+require_relative 'base'
 
 module ThreadSafe
   class Wrapper < Base

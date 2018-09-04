@@ -1,5 +1,5 @@
-require 'dragontk/thread_safe/core_ext/object'
-require 'dragontk/thread_safe/array'
+require_relative 'object'
+require_relative '../array'
 
 class Array
   def thread_safe

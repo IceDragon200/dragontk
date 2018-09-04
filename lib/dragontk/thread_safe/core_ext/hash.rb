@@ -1,5 +1,5 @@
-require 'dragontk/thread_safe/core_ext/object'
-require 'dragontk/thread_safe/hash'
+require_relative 'object'
+require_relative '../hash'
 
 class Hash
   def thread_safe

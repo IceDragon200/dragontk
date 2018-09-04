@@ -1,4 +1,4 @@
-require 'dragontk/workers/base'
+require_relative 'base'
 
 module DragonTK
   module Workers

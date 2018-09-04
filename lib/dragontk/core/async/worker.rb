@@ -1,7 +1,7 @@
 require 'securerandom'
 require 'moon-logfmt/logfmt'
-require 'dragontk/core_ext/ostruct'
-require 'dragontk/workers/channel'
+require_relative '../../core_ext/ostruct'
+require_relative '../../workers/channel'
 
 module DragonTK
   module Async

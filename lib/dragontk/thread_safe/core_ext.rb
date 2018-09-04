@@ -1,4 +1,4 @@
-require 'dragontk/thread_safe/core_ext/array'
-require 'dragontk/thread_safe/core_ext/hash'
-require 'dragontk/thread_safe/core_ext/io'
-require 'dragontk/thread_safe/core_ext/object'
+require_relative 'core_ext/array'
+require_relative 'core_ext/hash'
+require_relative 'core_ext/io'
+require_relative 'core_ext/object'

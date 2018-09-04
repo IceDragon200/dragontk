@@ -1,7 +1,5 @@
-lib = File.join(File.dirname(__FILE__), 'lib')
-$:.unshift lib unless $:.include?(lib)
-
-require 'dragontk/version'
+require 'date'
+require_relative 'lib/dragontk/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY

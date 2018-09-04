@@ -1,4 +1,4 @@
-require 'dragontk/thread_pool'
+require_relative '../../thread_pool'
 
 module DragonTK
   module Async

@@ -1,4 +1,4 @@
-require 'dragontk/thread_safe/generic'
+require_relative '../generic'
 
 class Object
   def thread_safe

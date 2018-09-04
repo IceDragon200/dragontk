@@ -1,4 +1,4 @@
-require 'dragontk/thread_safe/wrapper'
+require_relative 'wrapper'
 
 ##
 # Wrapper class for an IO, employing an internal mutex to prevent multiple
