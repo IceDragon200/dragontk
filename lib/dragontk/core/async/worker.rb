@@ -30,7 +30,6 @@ module DragonTK
       protected def initialize_members(options)
         @id = SecureRandom.hex(16)
         @logger = options.fetch(:logger, Kona::Logfmt::NULL)
-        @run_mutex = Mutex.new
       end
 
       def run

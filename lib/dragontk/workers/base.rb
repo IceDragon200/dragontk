@@ -11,7 +11,7 @@ module DragonTK
 
       def initialize_members(options)
         super
-        @in = Queue.new
+        @in = options.fetch(:in) { Queue.new }
       end
 
       def process(data)
@@ -21,8 +21,8 @@ module DragonTK
       def main
         loop do
           data = read
-          if data == Stop
-            @logger.write msg: 'Received stop order'
+          if data == :HALT
+            @logger.write msg: 'Received halt order'
             break
           end
           process data
@@ -30,7 +30,7 @@ module DragonTK
       end
 
       def stop
-        self.in << Stop
+        self.in << :HALT
       end
 
       def stop!

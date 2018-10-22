@@ -5,7 +5,7 @@ module DragonTK
         attr_accessor :out
 
         def write(data)
-          @out << data if @out
+          self.out << data if self.out
         end
       end
 
@@ -13,8 +13,8 @@ module DragonTK
         attr_accessor :in
 
         def read
-          return nil unless @in
-          @in.pop
+          return nil unless self.in
+          self.in.pop
         end
       end
 

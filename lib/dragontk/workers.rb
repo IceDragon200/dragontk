@@ -1,5 +1,4 @@
 require_relative 'workers/base'
-require_relative 'workers/stop'
 require_relative 'workers/interface'
 require_relative 'workers/channel'
 require_relative 'workers/buffer'
