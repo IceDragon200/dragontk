@@ -47,13 +47,16 @@ module DragonTK
             main
           ensure
             #
-            l.write state: 'terminating'
-            state_channel << :terminate
-            terminate
-            #
-            l.write state: 'discarding_thread'
-            @thread = nil
-            state_channel << :dead
+            begin
+              l.write state: 'terminating'
+              state_channel << :terminate
+              terminate
+            ensure
+              #
+              l.write state: 'discarding_thread'
+              @thread = nil
+              state_channel << :dead
+            end
           end
         end
       end
