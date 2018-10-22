@@ -28,8 +28,12 @@ module DragonTK
       end
 
       protected def initialize_members(options)
-        @id = SecureRandom.hex(16)
+        @id = SecureRandom.hex(4)
         @logger = options.fetch(:logger, Kona::Logfmt::NULL)
+      end
+
+      def alive?
+        @thread && @thread.alive?
       end
 
       def run
