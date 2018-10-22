@@ -54,6 +54,7 @@ module DragonTK
             ensure
               #
               l.write state: 'discarding_thread'
+              @thread.kill if @thread.alive?
               @thread = nil
               state_channel << :dead
             end
