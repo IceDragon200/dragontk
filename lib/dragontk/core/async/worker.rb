@@ -58,7 +58,7 @@ module DragonTK
             ensure
               #
               l.write state: 'discarding_thread'
-              @thread.kill if @thread.alive?
+              @thread.kill if @thread && @thread.alive?
               @thread = nil
               state_channel << :dead
             end
@@ -83,12 +83,12 @@ module DragonTK
 
       def await
         @logger.write fn: 'await'
-        @thread&.join
+        @thread&.join if @thread.alive?
         @thread = nil
       end
 
       def kill
-        @thread&.kill
+        @thread&.kill if @thread
         @thread = nil
       end
     end
