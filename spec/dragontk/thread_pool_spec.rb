@@ -2,7 +2,27 @@ require 'spec_helper'
 require 'dragontk/thread_pool'
 
 describe DragonTK::ThreadPool do
-  context "#spawn" do
+  context "#spawn/0" do
+    it "should spawn and complete all threads" do
+      result = {}
+      10.times do |j|
+        result[j] = {}
+        subject.spawn do
+          5.times do |i|
+            result[j][i] = j * i
+          end
+        end
+      end
+
+      subject.await
+
+      10.times do |j|
+        5.times do |i|
+          expect(result[j][i]).to eq(j * i)
+        end
+      end
+    end
+
     it "should spawn a new sub thread" do
       subject.spawn do
         5.times do
