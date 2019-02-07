@@ -117,7 +117,7 @@ module DragonTK
 
         @threads.each_pair do |index, thread|
           thread.kill if thread and thread.alive?
-          checkin_unsafe(pool_cycle, index)
+          checkin_unsafe(@pool_cycle, index)
         end
       end
       rebuild_available

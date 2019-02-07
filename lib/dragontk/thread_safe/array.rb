@@ -13,6 +13,8 @@ module ThreadSafe
     wrap :include?
     wrap :map
     wrap :push
+    wrap :pop
+    wrap :shift
     wrap :size
   end
 end

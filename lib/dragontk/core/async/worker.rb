@@ -20,6 +20,8 @@ module DragonTK
       #   @return [DragonTK::Worker::Channel]
       attr_reader :state_channel
 
+      attr_reader :thread
+
       def initialize(options = {})
         @settings = OpenStruct.conj(options.fetch(:settings, {}))
         @state_channel = DragonTK::Workers::Channel.new

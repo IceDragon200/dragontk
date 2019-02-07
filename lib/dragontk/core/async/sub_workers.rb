@@ -28,7 +28,7 @@ module DragonTK
       end
 
       def subwork(&block)
-        @q.process(&block)
+        @q.spawn(&block)
       end
     end
   end
