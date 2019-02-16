@@ -3,13 +3,15 @@ require 'thread'
 module DragonTK
   class ThreadPool
     attr_accessor :abort_on_exception
+    attr_accessor :report_on_exception
     attr_accessor :log
     attr_reader :thread_limit
 
     def initialize(options = {}, &block)
       @thread_limit = options.fetch(:thread_limit, self.class.thread_limit)
       @log = options.fetch(:log, nil)
-      @abort_on_exception = options.fetch(:abort_on_exception, true)
+      @abort_on_exception = options.fetch(:abort_on_exception, Thread.abort_on_exception)
+      @report_on_exception = options.fetch(:report_on_exception, Thread.report_on_exception)
       @job_id = 0
       @pool_cycle = 0
       @spawn_lock = Mutex.new
@@ -88,6 +90,7 @@ module DragonTK
 
       pool[index] = Thread.new do
         Thread.current.abort_on_exception = @abort_on_exception
+        Thread.current.report_on_exception = @report_on_exception
         debug_log do |device|
           device.puts "spawn:#{pool_cycle}:#{index}:#{job_id} start"
         end

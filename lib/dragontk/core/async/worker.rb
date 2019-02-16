@@ -42,6 +42,7 @@ module DragonTK
         l = @logger.new fn: 'run'
         l.write state: 'starting'
         @thread = Thread.new do
+          Thread.current.report_on_exception = true
           #
           l.write state: 'preparing'
           state_channel << :prepare
