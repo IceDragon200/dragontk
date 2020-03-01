@@ -126,7 +126,7 @@ module DragonTK
       rebuild_available
     end
 
-    def await(timeout = 60)
+    def await(timeout = Float::INFINITY)
       debug_log do |device|
         device.puts "await"
       end

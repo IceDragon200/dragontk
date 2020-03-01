@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rubocop',      '~> 0.49'
   s.add_dependency 'rspec',        '~> 3.2'
-  s.add_dependency 'simplecov',    '>= 0'
   s.add_dependency 'yajl-ruby',       '~> 1.2'
 
   s.add_dependency 'yard',         '~> 0.9.11'

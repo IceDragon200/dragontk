@@ -22,14 +22,14 @@ module DragonTK
 
       attr_reader :thread
 
-      def initialize(options = {})
+      def initialize(**options)
         @settings = OpenStruct.conj(options.fetch(:settings, {}))
         @state_channel = DragonTK::Workers::Channel.new
-        initialize_members options
+        initialize_members(**options)
         run if options[:run]
       end
 
-      protected def initialize_members(options)
+      protected def initialize_members(**options)
         @id = SecureRandom.hex(4)
         @logger = options.fetch(:logger, Kona::Logfmt::NULL)
       end
@@ -42,7 +42,6 @@ module DragonTK
         l = @logger.new fn: 'run'
         l.write state: 'starting'
         @thread = Thread.new do
-          Thread.current.report_on_exception = true
           #
           l.write state: 'preparing'
           state_channel << :prepare
@@ -59,10 +58,6 @@ module DragonTK
               state_channel << :terminate
               terminate
             ensure
-              #
-              l.write state: 'discarding_thread'
-              @thread.kill if @thread && @thread.alive?
-              @thread = nil
               state_channel << :dead
             end
           end
